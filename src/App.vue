@@ -1,10 +1,14 @@
 <template>
   <header>
-    <router-link to="/">
-      <h1><span>movie</span>Zone</h1>
+    <router-link class="logo" to="/">
+      <img class="logoImg" src="./assets/logo.png" alt="">
+      <h1 class="logoTitle"><span>movie</span>Zone</h1>
+      <p>The place to find where to watch your movies.</p>
     </router-link>
   </header>
-  <router-view/>
+  <main>
+    <router-view/>
+  </main>
 </template>
 
 <style>
@@ -12,15 +16,63 @@
 
 :root{
   --darkBlack: #0C0D18;
+  --lightBlack: #2B2B38;
+  --white: #f6f6f6f1;
+  --whiteLight: #f6f6f6b0;
+  --mutedBlue: #2c3e50;
 }
 
 *{
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--darkBlack);
+  box-sizing: border-box; 
 }
 
+#app {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: ;
+  background-color: var(--darkBlack);
+  height: 100vh;
+}
+
+a{
+  text-decoration: none;
+}
+
+header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoImg{
+  width: 50px;
+}
+
+.logoTitle{
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+span{
+  font-weight: 300;
+}
+
+p{
+  color: var(--whiteLight);
+  font-weight: 300;
+  font-size: .7rem;
+}
 
 </style>
