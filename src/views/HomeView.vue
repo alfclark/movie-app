@@ -1,14 +1,28 @@
 <template>
   <div class="home">
-    Home
+    <div class="featured">Featured</div>
+    <SearchBox/>
+    <div class="movies-list">MOVIES</div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import SearchBox from '@/components/SearchBox.vue'
 
 export default {
-
+    components: { SearchBox }
 }
 </script>
+
+<style scoped>
+.home{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;  
+}
+
+
+</style>
