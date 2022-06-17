@@ -2,7 +2,6 @@
   <div class="home">
     <div class="featured">Featured</div>
     <SearchBox/>
-    <div class="movies-list">MOVIES</div>
   </div>
 </template>
 
@@ -11,7 +10,9 @@
 import SearchBox from '@/components/SearchBox.vue'
 
 export default {
+  
     components: { SearchBox }
+    
 }
 </script>
 
