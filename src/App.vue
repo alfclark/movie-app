@@ -37,6 +37,10 @@
   height: 100vh;
 }
 
+main {
+  background-color: var(--darkBlack);
+}
+
 a {
   text-decoration: none;
 }
