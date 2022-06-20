@@ -69,7 +69,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+  margin: 1rem;
 }
 
 .detail.left {
@@ -112,5 +112,47 @@ export default {
 
 .similar {
   color: var(--white);
+}
+
+@media screen and (max-width: 900px) {
+  .poster {
+    width: 200px;
+  }
+  .detail-right {
+    gap: 0.5rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .plot {
+    font-size: 0.8rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+  .name {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .movie-detail {
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-right {
+    gap: 0.5rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .plot {
+    font-size: 0.8rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+  .name {
+    font-size: 0.8rem;
+  }
 }
 </style>
