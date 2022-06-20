@@ -88,9 +88,6 @@ export default {
   flex-direction: column;
   margin-left: 2rem;
   gap: 1rem;
-  justify-content: left;
-  text-align: left;
-  align-items: flex-start;
 }
 .title {
   font-size: 2rem;
@@ -144,6 +141,9 @@ export default {
   }
   .detail-right {
     gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
   }
   .title {
     font-size: 1.5rem;
