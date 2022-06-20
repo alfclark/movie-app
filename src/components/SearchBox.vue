@@ -142,7 +142,7 @@ button:hover {
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 20%;
+  height: 25%;
   padding: 1rem 0.5rem 1rem 0.5rem;
   background-color: var(--darkBlack);
   border-bottom-left-radius: 1.5rem;
