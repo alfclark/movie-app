@@ -139,6 +139,9 @@ export default {
     display: flex;
     flex-direction: column;
   }
+  .poster {
+    height: 300px;
+  }
   .detail-right {
     gap: 0.5rem;
   }
