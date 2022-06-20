@@ -1,29 +1,30 @@
 <template>
   <div class="home">
     <div class="featured">Featured</div>
-    <SearchBox/>
+    <SearchBox />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import SearchBox from '@/components/SearchBox.vue'
+import SearchBox from "@/components/SearchBox.vue";
 
 export default {
-  
-    components: { SearchBox }
-    
-}
+  components: { SearchBox },
+};
 </script>
 
 <style scoped>
-.home{
+.home {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  max-width: 100vw;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
-
+.featured {
+  color: var(--white);
+  margin: 1rem;
+}
 </style>
