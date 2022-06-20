@@ -45,7 +45,7 @@ export default {
       if (search.value != "") {
         fetch(
           /* `http://www.omdbapi.com/?i=tt3896198&apikey=${env.apikey}&s=${search.value}` */
-          `https://www.omdbapi.com/?i=tt3896198&apikey=732b5c43&s=${search.value}`
+          `https://www.omdbapi.com/?apikey=732b5c43&s=${search.value}&plot=full`
         )
           .then((response) => response.json())
           .then((data) => {
@@ -122,6 +122,9 @@ button:hover {
 .movie-card:hover {
   transform: scale(1.1);
   transition: 0.4s;
+  -webkit-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
+  -moz-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
+  box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
 }
 
 .movie-link {
