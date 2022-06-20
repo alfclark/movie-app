@@ -88,6 +88,7 @@ export default {
   flex-direction: column;
   margin-left: 2rem;
   gap: 1rem;
+  text-align: left;
 }
 .title {
   font-size: 2rem;
