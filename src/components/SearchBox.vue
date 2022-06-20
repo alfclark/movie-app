@@ -1,12 +1,16 @@
 <template>
   <form @submit.prevent="SearchMovies()" class="search-box">
-      <input type="text" placeholder="What are you looking for?" v-model="search">
-      <button type="submit" value="search"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-    <div class="movies-list">MOVIES</div>
+    <input type="text" placeholder="What are you looking for?" v-model="search">
+    <button type="submit" value="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </form>
+  <div class="movies-list">
     <div class="movie" v-for="movie in movies" :key="movie.imdbID">
-      {{ movie.title }}
+      {{ movie.Title }}
     </div>
+  </div>
+    
 </template>
 
 <script>
