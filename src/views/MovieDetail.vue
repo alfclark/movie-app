@@ -124,7 +124,23 @@ export default {
 .similar {
   color: var(--white);
 }
+.movieLinks {
+  margin: 2rem 0;
+}
 
+.imdb {
+  background-color: #e2b616;
+  color: var(--darkBlack);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  border: var(--darkBlack) solid 2px;
+}
+.imdb:hover {
+  background-color: var(--darkBlack);
+  color: #e2b616;
+  border: var(--white) solid 2px;
+  transition: 0.4s;
+}
 @media screen and (max-width: 900px) {
   .poster {
     width: 200px;
