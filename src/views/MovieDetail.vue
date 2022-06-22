@@ -27,6 +27,14 @@
         <h3>Actors</h3>
         <p class="name">{{ movie.Actors }}</p>
       </div>
+      <div class="movieLinks">
+        <a
+          class="imdb"
+          :href="'https://www.imdb.com/title/' + movie.imdbID"
+          target="blank"
+          >See it on IMDb</a
+        >
+      </div>
     </div>
   </div>
   <div class="similar">
@@ -92,11 +100,16 @@ export default {
 }
 .title {
   font-size: 2rem;
+  text-align: center;
 }
 .info {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+}
+.director,
+.actors {
+  text-align: left;
 }
 .type {
   text-transform: capitalize;
@@ -143,14 +156,20 @@ export default {
   .detail-right {
     gap: 0.5rem;
     justify-content: center;
-    align-items: center;
     margin: 0;
   }
   .title {
     font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  .info {
+    justify-content: center;
   }
   .plot {
     font-size: 0.8rem;
+  }
+  .movieLinks {
+    text-align: center;
   }
   h3 {
     font-size: 1rem;
