@@ -40,18 +40,19 @@
   <div class="similar">
     <h2>Similar to this Film:</h2>
   </div>
+  <HomeFooter class="footer" />
 </template>
 
 <script>
 import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
+import HomeFooter from "@/components/HomeFooter.vue";
 /* import env from "@/env"; */
 
 export default {
   setup() {
     const movie = ref({});
     const route = useRoute();
-
     onBeforeMount(() => {
       fetch(
         /* `http://www.omdbapi.com/?i=tt3896198&apikey=${env.apikey}&s=${search.value}` */
@@ -63,11 +64,11 @@ export default {
           console.log(data);
         });
     });
-
     return {
       movie,
     };
   },
+  components: { HomeFooter },
 };
 </script>
 
@@ -100,7 +101,7 @@ export default {
 }
 .title {
   font-size: 2rem;
-  text-align: center;
+  text-align: left;
 }
 .info {
   display: flex;
@@ -141,6 +142,10 @@ export default {
   border: var(--white) solid 2px;
   transition: 0.4s;
 }
+.footer {
+  position: fixed;
+  bottom: 0;
+}
 @media screen and (max-width: 900px) {
   .poster {
     width: 200px;
@@ -177,6 +182,7 @@ export default {
   .title {
     font-size: 1.5rem;
     margin-top: 1rem;
+    text-align: center;
   }
   .info {
     justify-content: center;
