@@ -1,58 +1,85 @@
 <template>
-  <div class="movie-detail">
-    <div class="detail-left">
-      <img :src="movie.Poster" alt="Movie Poster" class="poster" />
+  <div class="detailed">
+    <div class="movie-detail">
+      <div class="detail-left">
+        <img :src="movie.Poster" alt="Movie Poster" class="poster" />
+      </div>
+      <div class="detail-right">
+        <h2 class="title">{{ movie.Title }}</h2>
+        <div class="info">
+          <p class="type">{{ movie.Type }}</p>
+          |
+          <p>{{ movie.Year }}</p>
+          |
+          <p>{{ movie.Genre }}</p>
+          |
+          <p>{{ movie.Rated }}</p>
+          |
+          <p>{{ movie.Runtime }}</p>
+          |
+          <p><i class="fa-solid fa-star"></i> {{ movie.imdbRating }}</p>
+        </div>
+        <p class="plot">{{ movie.Plot }}</p>
+        <div class="director">
+          <h3>Director</h3>
+          <p class="name">{{ movie.Director }}</p>
+        </div>
+        <div class="actors">
+          <h3>Actors</h3>
+          <p class="name">{{ movie.Actors }}</p>
+        </div>
+        <div class="movieLinks">
+          <a
+            class="imdb"
+            :href="'https://www.imdb.com/title/' + movie.imdbID"
+            target="blank"
+            >See it on IMDb</a
+          >
+        </div>
+      </div>
     </div>
-    <div class="detail-right">
-      <h2 class="title">{{ movie.Title }}</h2>
-      <div class="info">
-        <p class="type">{{ movie.Type }}</p>
-        |
-        <p>{{ movie.Year }}</p>
-        |
-        <p>{{ movie.Genre }}</p>
-        |
-        <p>{{ movie.Rated }}</p>
-        |
-        <p>{{ movie.Runtime }}</p>
-        |
-        <p><i class="fa-solid fa-star"></i> {{ movie.imdbRating }}</p>
-      </div>
-      <p class="plot">{{ movie.Plot }}</p>
-      <div class="director">
-        <h3>Director</h3>
-        <p class="name">{{ movie.Director }}</p>
-      </div>
-      <div class="actors">
-        <h3>Actors</h3>
-        <p class="name">{{ movie.Actors }}</p>
-      </div>
-      <div class="movieLinks">
-        <a
-          class="imdb"
-          :href="'https://www.imdb.com/title/' + movie.imdbID"
-          target="blank"
-          >See it on IMDb</a
-        >
+    <div class="similar">
+      <h2>Similar to this Film:</h2>
+      <div class="movie-carousel">
+        <div class="movies-list">
+          <div class="movie-card" v-for="movie in movies" :key="movie.imdbID">
+            <div class="links">
+              <router-link
+                :to="'/movie/' + movie.imdbID"
+                class="movie-link"
+                target="_blank"
+              >
+                <img class="poster" :src="movie.Poster" alt="Movie Poster" />
+                <div class="detail">
+                  <h3 class="movie-title">{{ movie.Title }}</h3>
+                  <div class="info">
+                    <p class="type">{{ movie.Type }}</p>
+                    |
+                    <p class="year">{{ movie.Year }}</p>
+                  </div>
+                </div>
+              </router-link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <HomeFooter class="footer" />
   </div>
-  <div class="similar">
-    <h2>Similar to this Film:</h2>
-  </div>
-  <HomeFooter class="footer" />
 </template>
 
 <script>
 import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 import HomeFooter from "@/components/HomeFooter.vue";
-/* import env from "@/env"; */
 
 export default {
   setup() {
     const movie = ref({});
     const route = useRoute();
+    const movies = ref([]);
+    const title = ref({});
+
     onBeforeMount(() => {
       fetch(
         /* `http://www.omdbapi.com/?i=tt3896198&apikey=${env.apikey}&s=${search.value}` */
@@ -61,11 +88,24 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           movie.value = data;
-          console.log(data);
+          title.value = data.Title;
+          console.log(title.value);
+          fetch(
+            /* `http://www.omdbapi.com/?i=tt3896198&apikey=${env.apikey}&s=${search.value}` */
+            `https://www.omdbapi.com/?apikey=732b5c43&s=${title.value}&plot=full`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              movies.value = data.Search.slice(5);
+              console.log(movies.value);
+            });
         });
     });
+
     return {
       movie,
+      movies,
+      title,
     };
   },
   components: { HomeFooter },
@@ -124,6 +164,7 @@ export default {
 
 .similar {
   color: var(--white);
+  margin-bottom: 5rem;
 }
 .movieLinks {
   margin: 2rem 0;
@@ -142,9 +183,78 @@ export default {
   border: var(--white) solid 2px;
   transition: 0.4s;
 }
-.footer {
-  position: fixed;
+.movies-list {
+  max-width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  background-color: var(--darkBlack);
+}
+
+.movie-card {
+  margin: 1rem;
+  position: relative;
+  display: inline-block;
+  color: var(--white);
+  border-radius: 1.5rem;
+  -webkit-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
+  -moz-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
+  box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
+  cursor: pointer;
+}
+
+.movie-card:hover {
+  transform: scale(1.1);
+  transition: 0.4s;
+  -webkit-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
+  -moz-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
+  box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
+}
+
+.movie-link {
+  color: var(--white);
+}
+
+.poster {
+  width: 250px;
+  height: 380px;
+  border-radius: 1.5rem;
+}
+
+.detail {
+  position: absolute;
+  z-index: 1;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
   bottom: 0;
+  width: 100%;
+  height: 25%;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  background-color: var(--darkBlack);
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.movie-title {
+  font-size: 1rem;
+}
+.type {
+  text-transform: capitalize;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  margin-top: 5rem;
 }
 @media screen and (max-width: 900px) {
   .poster {
