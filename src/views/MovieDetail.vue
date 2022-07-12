@@ -42,6 +42,9 @@
       <h2>Similar to this Film:</h2>
       <div class="movie-carousel">
         <p class="notFound" v-show="notFound">No similar films found</p>
+        <p class="notFound" v-show="(notFound = true)">
+          No similar films found
+        </p>
         <div class="movies-list">
           <div class="movie-card" v-for="movie in movies" :key="movie.imdbID">
             <div class="links" v-show="movie.Poster != 'N/A'">
@@ -80,7 +83,6 @@ export default {
     const route = useRoute();
     const movies = ref([]);
     const title = ref({});
-    let notFound = false;
 
     onBeforeMount(() => {
       fetch(
@@ -100,7 +102,6 @@ export default {
             .then((data) => {
               if (data.Search === undefined) {
                 console.log("hi");
-                notFound = true;
               } else {
                 movies.value = data.Search.slice(5);
                 /* console.log(movies.value); */
@@ -113,7 +114,6 @@ export default {
       movie,
       movies,
       title,
-      notFound,
     };
   },
   components: { HomeFooter },
