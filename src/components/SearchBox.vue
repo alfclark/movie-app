@@ -89,11 +89,11 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: 0.4s;
 }
 
 button:hover {
   transform: scale(1.1);
-  transition: 0.4s;
   color: white;
 }
 
@@ -116,12 +116,12 @@ button:hover {
   -webkit-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
   -moz-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
   box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
+  transition: 0.4s;
   cursor: pointer;
 }
 
 .movie-card:hover {
   transform: scale(1.1);
-  transition: 0.4s;
   -webkit-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
   -moz-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
   box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
