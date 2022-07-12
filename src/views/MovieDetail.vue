@@ -41,6 +41,7 @@
     <div class="similar">
       <h2>Similar to this Film:</h2>
       <div class="movie-carousel">
+        <p class="notFound" v-show="notFound">No similar films found</p>
         <div class="movies-list">
           <div class="movie-card" v-for="movie in movies" :key="movie.imdbID">
             <div class="links" v-show="movie.Poster != 'N/A'">
@@ -79,6 +80,7 @@ export default {
     const route = useRoute();
     const movies = ref([]);
     const title = ref({});
+    let notFound = false;
 
     onBeforeMount(() => {
       fetch(
@@ -96,8 +98,13 @@ export default {
           )
             .then((response) => response.json())
             .then((data) => {
-              movies.value = data.Search.slice(5);
-              console.log(movies.value[0].Poster);
+              if (data.Search === undefined) {
+                console.log("hi");
+                notFound = true;
+              } else {
+                movies.value = data.Search.slice(5);
+                /* console.log(movies.value); */
+              }
             });
         });
     });
@@ -106,6 +113,7 @@ export default {
       movie,
       movies,
       title,
+      notFound,
     };
   },
   components: { HomeFooter },
@@ -119,6 +127,7 @@ export default {
   align-items: center;
   justify-content: center;
   margin: 1rem;
+  height: 50vh;
 }
 
 .detail.left {
@@ -251,6 +260,10 @@ export default {
 .type {
   text-transform: capitalize;
 }
+.notFound {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
 .footer {
   position: relative;
   bottom: 0;
@@ -280,6 +293,7 @@ export default {
   .movie-detail {
     display: flex;
     flex-direction: column;
+    height: auto;
   }
   .poster {
     height: 300px;
