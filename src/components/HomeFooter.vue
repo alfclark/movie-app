@@ -10,7 +10,6 @@ export default {};
 
 <style>
 .footer {
-  width: 100vw;
   height: 3rem;
   background-color: var(--lightBlack);
   display: flex;
