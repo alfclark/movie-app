@@ -11,7 +11,7 @@
   </form>
   <div class="movies-list">
     <div class="movie-card" v-for="movie in movies" :key="movie.imdbID">
-      <div class="links">
+      <div class="links" v-show="movie.Poster != 'N/A'">
         <router-link
           :to="'/movie/' + movie.imdbID"
           class="movie-link"

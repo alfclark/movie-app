@@ -43,7 +43,7 @@
       <div class="movie-carousel">
         <div class="movies-list">
           <div class="movie-card" v-for="movie in movies" :key="movie.imdbID">
-            <div class="links">
+            <div class="links" v-show="movie.Poster != 'N/A'">
               <router-link
                 :to="'/movie/' + movie.imdbID"
                 class="movie-link"
@@ -88,7 +88,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           movie.value = data;
-          title.value = data.Title.split(" ").splice(0, 2).join(" ");
+          title.value = data.Title.split(" ")[0];
           console.log(title.value);
           fetch(
             /* `http://www.omdbapi.com/?i=tt3896198&apikey=${env.apikey}&s=${search.value}` */
@@ -97,6 +97,7 @@ export default {
             .then((response) => response.json())
             .then((data) => {
               movies.value = data.Search.slice(5);
+              console.log(movies.value[0].Poster);
             });
         });
     });
@@ -175,12 +176,12 @@ export default {
   padding: 1rem 2rem;
   border-radius: 2rem;
   border: var(--darkBlack) solid 2px;
+  transition: 0.4s;
 }
 .imdb:hover {
   background-color: var(--darkBlack);
   color: #e2b616;
   border: var(--white) solid 2px;
-  transition: 0.4s;
 }
 .movies-list {
   max-width: 100vw;
@@ -201,12 +202,12 @@ export default {
   -webkit-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
   -moz-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
   box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.1);
+  transition: 0.4s;
   cursor: pointer;
 }
 
 .movie-card:hover {
   transform: scale(1.1);
-  transition: 0.4s;
   -webkit-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
   -moz-box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
   box-shadow: 0px 0px 54px -11px rgba(246, 246, 246, 0.3);
