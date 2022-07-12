@@ -88,7 +88,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           movie.value = data;
-          title.value = data.Title;
+          title.value = data.Title.split(" ").splice(0, 2).join(" ");
           console.log(title.value);
           fetch(
             /* `http://www.omdbapi.com/?i=tt3896198&apikey=${env.apikey}&s=${search.value}` */
@@ -97,7 +97,6 @@ export default {
             .then((response) => response.json())
             .then((data) => {
               movies.value = data.Search.slice(5);
-              console.log(movies.value);
             });
         });
     });
